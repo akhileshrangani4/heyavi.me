@@ -157,7 +157,9 @@ export function CanvasSpace({ className }: CanvasSpaceProps) {
                 <div className="text-xs text-neutral-400 dark:text-neutral-500 space-y-1">
                   <p className="italic">"What's your experience with React?"</p>
                   <p className="italic">"Show me your recent projects"</p>
-                  <p className="italic">"Tell me about your work at tambo ai"</p>
+                  <p className="italic">
+                    "Tell me about your work at tambo ai"
+                  </p>
                   <p className="italic">"Check out this role: [job URL]"</p>
                 </div>
 

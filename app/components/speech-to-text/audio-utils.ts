@@ -11,8 +11,9 @@ export async function convertToWav(audioBlob: Blob): Promise<Blob | null> {
   const arrayBuffer = await audioBlob.arrayBuffer();
 
   // Create audio context to decode the audio
-  const audioContext = new (window.AudioContext ||
-    (window as any).webkitAudioContext)();
+  const audioContext = new (
+    window.AudioContext || (window as any).webkitAudioContext
+  )();
 
   try {
     // Decode the audio data with error handling

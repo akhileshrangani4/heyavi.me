@@ -78,8 +78,10 @@ const useMessageContext = () => {
  * Props for the Message component.
  * Extends standard HTMLDivElement attributes.
  */
-export interface MessageProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'content'> {
+export interface MessageProps extends Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  'content'
+> {
   /** The role of the message sender ('user' or 'assistant'). */
   role: 'user' | 'assistant';
   /** The full Tambo thread message object. */
@@ -164,8 +166,10 @@ LoadingIndicator.displayName = 'LoadingIndicator';
  * Props for the MessageContent component.
  * Extends standard HTMLDivElement attributes.
  */
-export interface MessageContentProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'content'> {
+export interface MessageContentProps extends Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  'content'
+> {
   /** Optional override for the message content. If not provided, uses the content from the message object in the context. */
   content?: string | { type: string; text?: string }[];
   /** Optional flag to render as Markdown. Default is true. */
@@ -359,8 +363,10 @@ MessageContent.displayName = 'MessageContent';
  * Props for the ToolcallInfo component.
  * Extends standard HTMLDivElement attributes.
  */
-export interface ToolcallInfoProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'content'> {
+export interface ToolcallInfoProps extends Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  'content'
+> {
   /** Optional flag to render response content as Markdown. Default is true. */
   markdown?: boolean;
 }

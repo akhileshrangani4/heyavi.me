@@ -100,8 +100,7 @@ const useMessageInputContext = () => {
  * Props for the MessageInput component.
  * Extends standard HTMLFormElement attributes.
  */
-export interface MessageInputProps
-  extends React.HTMLAttributes<HTMLFormElement> {
+export interface MessageInputProps extends React.HTMLAttributes<HTMLFormElement> {
   /** The context key identifying which thread to send messages to. */
   contextKey?: string;
   /** Optional styling variant for the input container. */
@@ -125,8 +124,7 @@ export interface MessageInputProps
  */
 const MessageInput = React.forwardRef<HTMLFormElement, MessageInputProps>(
   ({ children, className, contextKey, variant, ...props }, ref) => {
-    const { value, setValue, submit, isPending, error } =
-      useTamboThreadInput(contextKey);
+    const { value, setValue, submit, isPending, error } = useTamboThreadInput();
     const [displayValue, setDisplayValue] = React.useState('');
     const [submitError, setSubmitError] = React.useState<string | null>(null);
     const textareaRef = React.useRef<HTMLTextAreaElement>(null);
@@ -237,8 +235,7 @@ MessageInput.displayName = 'MessageInput';
  * Props for the MessageInputTextarea component.
  * Extends standard TextareaHTMLAttributes.
  */
-export interface MessageInputTextareaProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface MessageInputTextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   /** Custom placeholder text. */
   placeholder?: string;
 }
@@ -317,8 +314,7 @@ MessageInputTextarea.displayName = 'MessageInput.Textarea';
  * Props for the MessageInputSubmitButton component.
  * Extends standard ButtonHTMLAttributes.
  */
-export interface MessageInputSubmitButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface MessageInputSubmitButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Optional content to display inside the button. */
   children?: React.ReactNode;
 }
@@ -504,8 +500,7 @@ MessageInputToolbar.displayName = 'MessageInput.Toolbar';
  * </MessageInput>
  * ```
  */
-interface MessageInputSpeechButtonProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+interface MessageInputSpeechButtonProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Custom className for the speech button */
   buttonClassName?: string;
   /** Callback when recording state changes */
