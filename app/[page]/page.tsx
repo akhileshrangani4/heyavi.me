@@ -20,6 +20,13 @@ export async function generateMetadata({
 
   const url = `${userData.site}/${page}`;
 
+  // Convert relative image paths to absolute URLs for Open Graph
+  const imageUrl = metadata.image
+    ? metadata.image.startsWith('http')
+      ? metadata.image
+      : `${userData.site}${metadata.image}`
+    : undefined;
+
   return {
     title: metadata.title,
     description: metadata.description,
@@ -28,6 +35,16 @@ export async function generateMetadata({
       description: metadata.description,
       url,
       siteName: userData.name,
+      images: imageUrl
+        ? [
+            {
+              url: imageUrl,
+              width: 1200,
+              height: 630,
+              alt: metadata.title,
+            },
+          ]
+        : [],
       type: 'website',
     },
     twitter: {
@@ -35,6 +52,7 @@ export async function generateMetadata({
       title: metadata.title,
       description: metadata.description,
       creator: '@akhileshrangani',
+      images: imageUrl ? [imageUrl] : [],
     },
   };
 }
