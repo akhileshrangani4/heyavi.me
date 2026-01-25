@@ -61,7 +61,7 @@ export function ResumeOverview({
                 <span className="text-neutral-400 dark:text-neutral-600 mt-1">
                   •
                 </span>
-                <span>Software Development Intern at tambo ai</span>
+                <span>Software Engineer at tambo ai</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-neutral-400 dark:text-neutral-600 mt-1">
