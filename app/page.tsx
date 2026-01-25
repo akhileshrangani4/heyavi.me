@@ -51,7 +51,7 @@ export default function Page() {
   // Current work data - keeping the original inline structure
   const workData = [
     <p key="tambo">
-      Software Development Intern at{' '}
+      Software Engineer at{' '}
       <Badge href="https://tambo.co" underline={true}>
         tambo ai
       </Badge>
