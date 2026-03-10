@@ -1,0 +1,70 @@
+---
+title: 'building a thought journal that thinks for you'
+publishedAt: '2026-03-10'
+summary: 'a voice-first journaling app with a five-agent ai pipeline, built at the ai agent glow up hackathon at workos hq in sf'
+keywords: 'hackathon, ai agents, voice journal, openai realtime api, agent pipeline, thought journal, build club, glow up hackathon'
+---
+
+last weekend i was at the [ai agent glow up hackathon](https://campus.buildclub.ai/challenges/019cc637-780a-76fd-81dc-db91a3b6b020) at workos hq in sf. the theme was building ai agent apps that look as good as they think, judged on aesthetics, intelligence, and reliability. 59 people, one day, build something beautiful.
+
+we built a voice-first thought journal. the team was me, [stephanie zhou](https://www.linkedin.com/in/stephanielanzhou/), [sarah soboh](https://www.linkedin.com/in/sarahsoboh/), [sumin park](https://www.linkedin.com/in/suminpark/), and [ayushe nagpal](https://www.linkedin.com/in/ayushe-nagpal/). you talk into it for a few minutes, and a pipeline of five ai agents processes your raw stream of consciousness into structured insights, action items, research links, and calendar events.
+
+## the idea
+
+most journaling apps are just text editors with a date on top. we wanted something that actually does something with what you say. not a chatbot, a pipeline. you dump your thoughts, and the app processes them through a sequence of agents that each build on the last one's output.
+
+the flow goes: voice capture → clustering → agent pipeline → dashboard. every screen is its own experience, not just a loading spinner.
+
+## voice capture
+
+the recording screen uses openai's realtime api over websocket for live transcription. as you speak, your words appear as floating cloud bubbles that drift across the screen instead of a boring scrolling transcript. there's a configurable timer (2, 5, 10, 15 minutes) and a soft pulsing cloud in the center with a mic icon. the whole vibe is closer to a meditation app than a productivity tool.
+
+the tricky part was the audio pipeline. capturing mic input, converting float32 pcm to 16-bit, base64 encoding, and streaming it over the websocket in real time. we used a scriptprocessornode at 24khz sample rate which isn't the most modern approach (audioworklet would be better) but it works reliably and we had a day.
+
+## clustering
+
+after recording, words float up from the bottom of the screen like bubbles and then snap into color-coded theme clusters. the clustering is local: keyword extraction with stop word filtering, then grouping into 2-5 clusters based on density. you can drag clusters around and draw connections between them. it's meant to feel like watching your own thinking organize itself.
+
+the drag and drop uses react-dnd, and the connections between clusters render as svg quadratic bezier curves. small detail but drawing those curved dashed lines between draggable elements that update positions in real time was more fiddly than expected.
+
+## the agent pipeline
+
+this is the core of the app. five agents run sequentially, each feeding into the next:
+
+**synthesisagent** takes your raw transcript and extracts priorities, tasks, themes, blockers, and creative sparks using gpt-4o-mini with json mode. this is the foundation everything else builds on.
+
+**linkeragent** compares the current entry against your past journal entries and finds connections. patterns across days, recurring themes, things you keep coming back to.
+
+**researchagent** takes the sparks and themes from synthesis and runs exa neural searches to find relevant articles, papers, tools. so if you rambled about wanting to learn rust, it surfaces actual resources.
+
+**actionagent** generates concrete next steps from your priorities and research. not vague "think about X" stuff, actual tasks with context.
+
+**calendaragent** takes those actions and proposes time-blocked calendar events. "write blog outline, tuesday 9am" kind of thing.
+
+the pipeline screen shows animated status indicators for each agent: idle, running, done, error. you watch them light up one by one. the whole thing runs through a sequential orchestrator with error recovery. if one agent fails, it saves partial results and keeps going.
+
+## the dashboard
+
+the final screen is a personalized workspace generated from your voice dump. today's priorities, action items with urgency colors, research links, proposed calendar events, historical entries. every widget is populated from what you actually said that morning, not a template.
+
+there's also a search mode where you can query across all your past entries. type "blog" and it pulls up every time you've mentioned it.
+
+## design
+
+the hackathon was explicitly about aesthetics so we spent real time on the design. the whole app uses a "serene" design system: soft blue-gray backgrounds (#eef5f8), warm dark text (#1a1510), playfair display for headings, dm sans for body, muted earth-tone accent colors. cloud imagery throughout, from the recording screen to the clusters to the transitions. framer motion handles all the animations.
+
+we wanted it to feel like opening a journal, not launching a saas app.
+
+## stack
+
+react 18, typescript, vite, tailwind css 4, shadcn/ui, framer motion for animations, react-dnd for drag and drop, react router 7. openai realtime api for voice, gpt-4o-mini for agents, exa for research. api keys are proxied through vercel serverless functions so nothing is exposed client-side. localstorage for persistence, no database, everything lives on your device.
+
+## what we'd change
+
+the clustering is purely local keyword extraction right now. with more time we'd send the transcript through an llm to get semantic clusters instead of just word frequency grouping. the linker agent is also limited by how many past entries you have. it gets more useful over time but on day one there's nothing to link to.
+
+the voice capture uses scriptprocessornode which is deprecated. audioworklet is the right call but the setup is more involved and we were optimizing for shipping, not longevity.
+
+## takeaway
+
+the pattern i keep coming back to at hackathons is making ai do something visible. not just return text, but change the screen. the cloud bubbles, the clustering animation, the pipeline status indicators, the generated dashboard. the ai is doing real work but the experience of watching it happen is what makes it feel like a product instead of a demo.
