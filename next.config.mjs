@@ -33,7 +33,7 @@ const nextConfig = {
   headers() {
     return [
       {
-        source: '/((?!api/resume).*)',
+        source: '/(.*)',
         headers: securityHeaders,
       },
     ];

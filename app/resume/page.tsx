@@ -1,36 +1,21 @@
-import { userData } from 'lib/data';
-import type { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Resume',
-  description: 'View my professional resume and work experience.',
-  alternates: {
-    canonical: '/resume',
-  },
-  openGraph: {
-    title: 'Resume | Akhilesh Rangani',
-    description: 'View my professional resume and work experience.',
-    url: `${userData.site}/resume`,
-    siteName: userData.name,
-    images: [
-      {
-        url: `${userData.site}/images/office.png?v=2`,
-        width: 2816,
-        height: 1536,
-        alt: 'Resume | Akhilesh Rangani',
-        type: 'image/png',
-      },
-    ],
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Resume | Akhilesh Rangani',
-    description: 'View my professional resume and work experience.',
-    creator: '@akhileshrangani',
-    images: [`${userData.site}/images/office.png?v=2`],
-  },
-};
+import dynamic from 'next/dynamic';
+
+const ResumeViewer = dynamic(
+  () =>
+    import('app/components/resume-viewer').then((mod) => mod.ResumeViewer),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-800 flex items-center justify-center py-20">
+        <p className="text-sm text-neutral-400 dark:text-neutral-500">
+          loading resume...
+        </p>
+      </div>
+    ),
+  }
+);
 
 export default function ResumePage() {
   return (
@@ -59,14 +44,7 @@ export default function ResumePage() {
           download pdf
         </a>
       </div>
-      <div className="w-full rounded-lg overflow-hidden border border-neutral-200 dark:border-neutral-800">
-        <iframe
-          src="/api/resume"
-          className="w-full"
-          style={{ height: '80vh' }}
-          title="Resume"
-        />
-      </div>
+      <ResumeViewer />
     </section>
   );
 }
