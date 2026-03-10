@@ -33,8 +33,9 @@ yarn-error.log*
 # vercel
 .vercel
 
-# generated resume pdf
+# generated resume pdf and pdf.js worker
 public/resume.pdf
+public/pdf.worker.min.mjs
 
 # typescript
 *.tsbuildinfo

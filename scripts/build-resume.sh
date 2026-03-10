@@ -11,3 +11,6 @@ fi
 
 echo "Compiling resume.tex -> public/resume.pdf"
 $TECTONIC src/resume/resume.tex --outdir public
+
+echo "Copying pdf.js worker to public/"
+cp node_modules/pdfjs-dist/build/pdf.worker.min.mjs public/pdf.worker.min.mjs
