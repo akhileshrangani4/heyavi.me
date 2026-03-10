@@ -9,5 +9,8 @@ export default function robots() {
     ],
     sitemap: `${userData.site}/sitemap.xml`,
     host: userData.site,
+    other: {
+      'X-Llms-Txt': `${userData.site}/llms.txt`,
+    },
   };
 }
