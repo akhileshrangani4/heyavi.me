@@ -2,7 +2,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "next build",
+    "build:resume": "bash scripts/build-resume.sh",
+    "build": "npm run build:resume && next build",
     "build-only": "next build",
     "start": "next start",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,css,scss,yaml,yml}\"",

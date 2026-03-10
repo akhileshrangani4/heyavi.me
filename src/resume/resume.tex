@@ -1,0 +1,117 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[top=0.35in, bottom=0.35in, left=0.4in, right=0.4in]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\pagenumbering{gobble}
+
+\titleformat{\section}{\normalsize\bfseries\uppercase}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{5pt}{3pt}
+
+\setlist[itemize]{noitemsep, topsep=1pt, parsep=0pt, leftmargin=12pt}
+
+\hypersetup{colorlinks=true, linkcolor=black, urlcolor=blue}
+
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+% ===== HEADER =====
+\begin{center}
+    {\Large \textbf{Akhilesh Rangani}} \\[2pt]
+    \small
+    \href{mailto:akhileshrangani4@gmail.com}{akhileshrangani4@gmail.com} $\cdot$
+    \href{https://avi.mn}{avi.mn} $\cdot$
+    \href{https://github.com/akhileshrangani4}{GitHub} $\cdot$
+    \href{https://linkedin.com/in/akhileshrangani}{LinkedIn} $\cdot$
+    San Francisco, CA
+\end{center}
+
+\vspace{-2pt}
+\small
+Full-stack engineer who builds \textbf{SDKs}, \textbf{CLIs}, \textbf{cloud IDEs}, and \textbf{LLM agent pipelines}. Deep experience with \textbf{React}, \textbf{TypeScript}, \textbf{streaming infrastructure}, \textbf{real-time systems}, and \textbf{RAG}.
+
+% ===== EXPERIENCE =====
+\section{Experience}
+
+\textbf{Founding Engineer} (prev. Intern) $|$ \textbf{Tambo AI} $|$ Remote \hfill Mar 2025 -- Present
+\begin{itemize}
+    \item \textbf{Built the CLI and component library from the ground up}: device \textbf{auth} flow with atomic code claiming, \textbf{framework detection} (Next.js/Vite), non-interactive mode for \textbf{AI agents}, full-send scaffolding, \textbf{streaming} prop rendering, persistent interactable components, and \textbf{tool execution} with error recovery. 346+ commits.
+    \item Owned \textbf{auth}, \textbf{onboarding}, and \textbf{analytics} end-to-end: \textbf{OAuth} token resolution, \textbf{Google auth} with user metadata, CLI auth flow, onboarding wizard with referral tracking, and \textbf{PostHog} analytics across frontend, backend, and CLI with anonymous telemetry.
+    \item Designed and shipped the \textbf{Claude Code plugin system}, consolidating fragmented skills into two context-aware entry points. Built \textbf{MCP OAuth} flows and custom header support.
+    \item Fixed critical \textbf{reliability} issues: thread loading states stuck after tool call failures, content blocks rendering out of order, MCP errors with no servers configured, and \textbf{ESM} compatibility breaks. Core contributor to an \textbf{open-source SDK} with \textbf{3,800+ users}, \textbf{11k+ GitHub stars}, and \textbf{550+ forks}.
+\end{itemize}
+
+\vspace{1pt}
+\textbf{Research Assistant in AI} $|$ \textbf{George Washington University} $|$ Washington, DC \hfill May 2024 -- Dec 2025
+\begin{itemize}
+    \item \textbf{Built Teach Anything from scratch}: \textbf{open-source RAG platform} for professors to upload course materials and spin up \textbf{AI chatbots}. Grew to \textbf{250+ professors}, featured in the \textbf{New York Times}. 206+ commits.
+    \item Implemented \textbf{RAG pipeline} with \textbf{pgvector} for \textbf{semantic search}, iterated through 5+ \textbf{chunking strategies} to optimize retrieval. Built \textbf{async file processing} with Upstash QStash and \textbf{rate limiting} with \textbf{Redis}.
+    \item Integrated \textbf{LLMs} (Llama 3.3 70B, Mistral Large, Qwen 2.5 72B) via OpenRouter with \textbf{streaming} responses using the \textbf{AI SDK}.
+    \item Designed \textbf{multi-tenant architecture} with professor approval workflows, domain-based \textbf{access control}, \textbf{usage analytics} dashboards, and subdomain routing.
+\end{itemize}
+
+\vspace{1pt}
+\textbf{Software Engineer} $|$ \textbf{GitWit} $|$ Remote \hfill Apr 2024 -- Dec 2025
+\begin{itemize}
+    \item Core engineer on Sandbox, an \textbf{open-source cloud IDE} with \textbf{AI copilot} and \textbf{real-time collaboration}. Built \textbf{Monaco editor} integration, file system, syntax highlighting, and code diffs powered by \textbf{E2B} sandboxes. 214+ commits.
+    \item \textbf{Built the AI copilot}: migrated to \textbf{AI SDK v6} with \textbf{multi-step tool calling}, multi-provider support (\textbf{Anthropic}, \textbf{OpenAI}, \textbf{OpenRouter}, \textbf{AWS Bedrock}), inline \textbf{visual diffs}, and \textbf{encrypted API key management} (AES-256-GCM).
+    \item Built \textbf{one-click deploys} via Dokku, \textbf{WebSocket} terminals, and template scaffolding for 5 frameworks. Restructured into \textbf{Turborepo monorepo}, replaced \textasciitilde90 \texttt{any} types, removed dead code across 23 files.
+    \item Owned \textbf{platform reliability}: \textbf{socket} stability, \textbf{GitHub OAuth} flows, \textbf{Clerk SSR} integration, and dashboard optimizations. Coordinated contributions from multiple developers.
+\end{itemize}
+
+\vspace{1pt}
+\textbf{Co-Founder \& CTO} $|$ \textbf{Triclone Technologies} $|$ Surat, India \hfill Jul 2022 -- May 2023
+\begin{itemize}
+    \item \textbf{Built a field service CRM from the ground up}: \textbf{GraphQL} API with \textbf{Express.js} and \textbf{MongoDB} for job scheduling, dispatch, and live technician tracking. Shipped cross-platform with \textbf{Next.js} (web), \textbf{Flutter} (mobile), and \textbf{Firebase} for real-time sync and push notifications.
+    \item Led a team of 5. Reduced \textbf{deployment time by 25\%} with \textbf{CI/CD} pipelines, \textbf{Docker}/\textbf{Kubernetes} orchestration, and auto-scaling on \textbf{AWS} and \textbf{Azure}. Integrated \textbf{Sentry} for error tracking and \textbf{serverless functions} for webhook processing.
+\end{itemize}
+
+% ===== PROJECTS =====
+\section{Projects}
+
+\textbf{Serene} -- Voice-first thought journal $|$ \textit{AI Agent Glow Up Hackathon}
+\begin{itemize}
+    \item Built a \textbf{five-agent sequential pipeline} (synthesis, linker, research, action, calendar) that processes \textbf{voice input} into structured insights, action items, and calendar events. \textbf{GPT-4o-mini} for agents, \textbf{Exa} for neural search.
+    \item \textbf{Real-time voice capture} with \textbf{OpenAI Realtime API} over \textbf{WebSocket}, streaming PCM audio at 24kHz. Animated clustering UI with \textbf{react-dnd} and SVG bezier curve connections.
+\end{itemize}
+
+\textbf{The Standup App} -- AI-powered team dashboard
+\begin{itemize}
+    \item \textbf{Built from scratch}: \textbf{multi-tenant} platform with \textbf{WorkOS auth} where you ask questions in plain English and get \textbf{interactive components} (PR lists, issue trackers, sprint views) generated from \textbf{Linear} and \textbf{GitHub} data via Tambo's \textbf{generative UI SDK}.
+    \item Built \textbf{Linear} integration with \textbf{@linear/sdk} and \textbf{GitHub API} routes with issue search, filters, member-scoped views, and \textbf{rate limiting}.
+\end{itemize}
+
+\textbf{Nova Explorer} -- AI space exploration game $|$ \textit{Daytona HackSprint}
+\begin{itemize}
+    \item Procedurally generated galaxy where players navigate by \textbf{voice}. Commands trigger \textbf{generative UI} via Tambo. \textbf{ElevenLabs} for voice, \textbf{Supabase} for game state, \textbf{Daytona SDK} for sandboxed code execution.
+    \item \textbf{Parallel sub-agents} with Cerebras GPT-OSS-120B, landing/takeoff mechanics, persistent game state with \textbf{Drizzle ORM}.
+\end{itemize}
+
+\textbf{YCHTS} -- Government bid finder $|$ \textit{YC Hack the Stackathon}
+\begin{itemize}
+    \item Conversational tool for contractors to find bids by panning a map or asking in plain English. Scrapes procurement portals with \textbf{Firecrawl}, displays on \textbf{MapLibre} with clustering, analyzes documents with \textbf{AI}.
+    \item \textbf{Tambo} for generative UI, \textbf{OpenRouter} for LLM, \textbf{Reducto} for PDF parsing.
+\end{itemize}
+
+% ===== TECH STACK =====
+\section{Tech Stack}
+
+\textbf{Programming:} Java, Python, SQL, C, C++, HTML, CSS, TypeScript, JavaScript, PHP, Dart \\
+\textbf{Frameworks:} Next.js, Express.js, Node.js, Flutter, Svelte, Streamlit, Vite, Nuxt \\
+\textbf{Tools:} Git, MySQL, Docker, Kubernetes, MongoDB, Prisma, Figma, E2B, Dokku, Postman, Sentry, PostgreSQL \\
+\textbf{Platforms:} AWS, Azure, GitHub, Cloudflare, Vercel, Supabase, Firebase, GCP, DigitalOcean, OpenAI, Anthropic \\
+\textbf{Libraries:} React.js, Zod, Redux, Axios, NextAuth.js, Clerk, Tailwind CSS, AI SDK, Framer Motion \\
+\textbf{Core:} SDK Design, CLI Tooling, Streaming Architecture, RAG Pipelines, Real-time Systems
+
+% ===== EDUCATION =====
+\section{Education}
+
+\textbf{MS Computer Science} $|$ George Washington University \hfill Graduated Dec 2025
+
+\end{document}
