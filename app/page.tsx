@@ -55,7 +55,7 @@ export default function Page() {
         teach anything
       </Badge>{' '}
       with{' '}
-      <Badge href="https://aialexa.org" underline={true}>
+      <Badge href="https://ajoubin.org" underline={true}>
         prof. alexa alice joubin
       </Badge>
       .
