@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 
 const links = [
   { name: 'blog', path: '/blog' },
+  { name: 'music', path: '/music' },
   { name: 'guestbook', path: '/guestbook' },
   { name: 'resume', path: '/resume' },
   { name: 'calendar', path: '/calendar' },

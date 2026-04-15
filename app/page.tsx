@@ -6,6 +6,8 @@ import { ProjectsSection } from 'app/components/projects-section';
 import { WritingSection } from 'app/components/writing-section';
 import { getBlogPosts } from 'app/db/blog';
 import { userData } from 'lib/data';
+import Image from 'next/image';
+import Link from 'next/link';
 import me from 'public/images/home/me.jpg';
 import me2 from 'public/images/home/me2.jpg';
 import me3 from 'public/images/home/me3.jpg';
@@ -28,7 +30,7 @@ export default function Page() {
   const heroData = {
     name: "hey, i'm avi.",
     description:
-      "software engineer in san francisco. i build developer tools, AI systems, and things that ship. founding engineer at tambo, previously research at gwu.",
+      "software engineer and musician in san francisco. i build developer tools, AI systems, and things that ship. i also write and produce music.",
   };
 
   const photoData = [
@@ -140,7 +142,56 @@ export default function Page() {
       <CurrentWorkSection title="now" workItems={workData} />
       <WritingSection posts={writingData} maxPosts={3} />
       <ProjectsSection projects={projectsData} />
-      <ConnectSection links={connectData} />
+
+      {/* latest release */}
+      <div className="mb-12 animate-enter animate-enter-5">
+        <h2 className="text-xs font-medium mb-4 text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">
+          latest release
+        </h2>
+        <Link
+          href="/music"
+          className="flex items-center gap-4 group"
+        >
+          <Image
+            src="/images/music/cover.png"
+            alt="tune kaha tha cover art"
+            width={80}
+            height={80}
+            className="rounded-lg"
+          />
+          <div>
+            <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100 group-hover:underline underline-offset-[3px] decoration-[0.5px]">
+              tune kaha tha
+            </p>
+            <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
+              single &middot; 2025
+            </p>
+          </div>
+        </Link>
+      </div>
+
+      <div className="mb-12 animate-enter animate-enter-6">
+        <h2 className="text-xs font-medium mb-4 text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">
+          connect
+        </h2>
+        <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-4">
+          {userData.name} &middot; {userData.email}
+        </p>
+        <div className="flex gap-5">
+          {connectData.map((link, index) => (
+            <a
+              key={index}
+              href={link.url}
+              {...(link.external
+                ? { target: '_blank', rel: 'noopener noreferrer' }
+                : {})}
+              className="text-sm text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 underline decoration-neutral-200 dark:decoration-neutral-800 underline-offset-[3px] decoration-[0.5px] hover:decoration-neutral-500 dark:hover:decoration-neutral-400"
+            >
+              {link.name}
+            </a>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
