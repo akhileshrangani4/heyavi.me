@@ -17,9 +17,9 @@ export const metadata: Metadata = {
     type: 'music.song',
     images: [
       {
-        url: `${userData.site}/og?title=${encodeURIComponent('tune kaha tha')}&summary=${encodeURIComponent('a single by avi. listen now on spotify, youtube, amazon music, tidal, and more.')}&keywords=${encodeURIComponent('music,single,tune kaha tha,avi,spotify')}`,
+        url: `${userData.site}/images/music/cover.png`,
         width: 1200,
-        height: 630,
+        height: 1200,
       },
     ],
   },
