@@ -103,11 +103,11 @@ export default function MusicPage() {
 
       {/* lyrics + streaming links side by side on larger screens */}
       <div className="mb-12 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-x-12 gap-y-10 md:items-start">
-        <div className="animate-enter animate-enter-4">
+        <div className="animate-enter animate-enter-4 order-2 md:order-none">
           <Lyrics />
         </div>
 
-        <div className="animate-enter animate-enter-5 md:w-64 md:sticky md:top-8">
+        <div className="animate-enter animate-enter-5 order-1 md:order-none md:w-64 md:sticky md:top-8">
           <h2 className="text-xs font-medium mb-4 text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">
             listen on
           </h2>
