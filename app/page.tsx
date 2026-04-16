@@ -164,7 +164,7 @@ export default function Page() {
               tune kaha tha
             </p>
             <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
-              single &middot; 2025
+              single &middot; 2026
             </p>
           </div>
         </Link>
