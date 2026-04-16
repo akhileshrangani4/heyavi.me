@@ -101,50 +101,51 @@ export default function MusicPage() {
         />
       </div>
 
-      {/* lyrics */}
-      <div className="mb-12 animate-enter animate-enter-4">
-        <Lyrics />
-      </div>
+      {/* lyrics + streaming links side by side on larger screens */}
+      <div className="mb-12 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-x-12 gap-y-10 md:items-start">
+        <div className="animate-enter animate-enter-4">
+          <Lyrics />
+        </div>
 
-      {/* streaming links */}
-      <div className="mb-12 animate-enter animate-enter-5">
-        <h2 className="text-xs font-medium mb-4 text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">
-          listen on
-        </h2>
-        <div className="flex flex-col gap-3">
-          {streamingLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 px-4 py-3 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800/50 transition-colors duration-150"
-            >
-              <Image
-                src={link.logo}
-                alt={`${link.name} logo`}
-                width={20}
-                height={20}
-                className={link.invertOnDark ? 'dark:invert' : ''}
-              />
-              <span className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
-                {link.name}
-              </span>
-              <svg
-                className="w-4 h-4 ml-auto text-neutral-400 dark:text-neutral-500"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                viewBox="0 0 24 24"
+        <div className="animate-enter animate-enter-5 md:w-64 md:sticky md:top-8">
+          <h2 className="text-xs font-medium mb-4 text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">
+            listen on
+          </h2>
+          <div className="flex flex-col gap-2">
+            {streamingLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 px-4 py-2.5 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-800/50 transition-colors duration-150"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
+                <Image
+                  src={link.logo}
+                  alt={`${link.name} logo`}
+                  width={20}
+                  height={20}
+                  className={link.invertOnDark ? 'dark:invert' : ''}
                 />
-              </svg>
-            </a>
-          ))}
+                <span className="text-sm font-medium text-neutral-900 dark:text-neutral-100">
+                  {link.name}
+                </span>
+                <svg
+                  className="w-4 h-4 ml-auto text-neutral-400 dark:text-neutral-500"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
+                  />
+                </svg>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 
