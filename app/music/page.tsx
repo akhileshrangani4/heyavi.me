@@ -1,6 +1,7 @@
 import { userData } from 'lib/data';
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import { Lyrics } from './lyrics';
 
 export const metadata: Metadata = {
   title: 'Music',
@@ -100,8 +101,13 @@ export default function MusicPage() {
         />
       </div>
 
-      {/* streaming links */}
+      {/* lyrics */}
       <div className="mb-12 animate-enter animate-enter-4">
+        <Lyrics />
+      </div>
+
+      {/* streaming links */}
+      <div className="mb-12 animate-enter animate-enter-5">
         <h2 className="text-xs font-medium mb-4 text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">
           listen on
         </h2>
@@ -143,7 +149,7 @@ export default function MusicPage() {
       </div>
 
       {/* artist info */}
-      <div className="mb-12 animate-enter animate-enter-5">
+      <div className="mb-12 animate-enter animate-enter-6">
         <h2 className="text-xs font-medium mb-4 text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">
           artist
         </h2>
