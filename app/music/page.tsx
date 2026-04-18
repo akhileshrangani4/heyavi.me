@@ -39,6 +39,11 @@ const streamingLinks = [
     logo: '/images/music/logos/spotify.svg',
   },
   {
+    name: 'apple music',
+    url: 'https://music.apple.com/us/album/tune-kaha-tha/1894374091?i=1894374092',
+    logo: '/images/music/logos/apple-music.svg',
+  },
+  {
     name: 'youtube',
     url: 'https://www.youtube.com/watch?v=8ogwU0Jc1hc',
     logo: '/images/music/logos/youtube.svg',
