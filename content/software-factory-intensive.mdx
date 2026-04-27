@@ -1,13 +1,17 @@
 ---
 title: 'two days at the first software factory intensive'
 publishedAt: '2026-04-27'
-summary: 'notes from the first cohort of the seattle software factory intensive, where gas city 1.0 shipped on day one and the framing of ai agents as a small async engineering team finally clicked'
-keywords: 'gas city, software factory, multi-agent, ai agents, steve yegge, actual ai, gas town, beads, agent orchestration, future of swe'
+summary: 'writing code with ai is over. notes from the first deep-dive workshop on software factories, where gas city 1.0 shipped on day one and the framing of ai agents as a small async engineering team finally clicked.'
+keywords: 'gas city, software factory, multi-agent, ai agents, agent orchestration, actual ai, ai tinkerers, future of swe'
 ---
 
-last week i was in seattle at the world's first deep-dive workshop on software factories, run by [actual ai](https://actual.ai) and [ai tinkerers](https://aitinkerers.org). there have been talks and blog posts on the topic before, but this was the first time anyone has sat a cohort down for two days and walked through the full thing end to end. the timing was wild. [gas city](https://github.com/gastownhall/gascity) 1.0 shipped on day one. we were learning a framework that was being released to the world while we were learning it.
+writing code with ai is over.
 
-the workshop is built around gas city, [steve yegge's](https://steve-yegge.medium.com) orchestration sdk for multi-agent systems, extracted from his [gas town](https://gastownhall.ai) project. across gas town, gas city, [beads](https://github.com/gastownhall/beads), and dolt, the ecosystem is already pushing two million lines of code. it has only existed since january.
+the next move is teaching ai to run a team that writes the code, and most of you have not started.
+
+last week in seattle i spent two days at the world's first deep-dive workshop on software factories, run by [actual ai](https://actual.ai) and [ai tinkerers](https://aitinkerers.org). there have been talks and blog posts on the topic before, but this was the first time anyone has sat a cohort down for two days and walked through the full thing end to end. the timing was wild. [gas city](https://github.com/gastownhall/gascity) 1.0 shipped on day one. we were learning a framework that was being released to the world while we were learning it.
+
+the workshop is built around gas city, the open-source toolkit for agent orchestration.
 
 ## the framing
 
@@ -19,7 +23,7 @@ the team is the agents: a planner who decomposes work, an architect who designs,
 
 the rig is the actual codebase the team is working on. it stays clean. agents touch it through structured artifacts, not through chat.
 
-agents talk by claiming work off a shared backlog. tasks are tracked in beads, the dependency-graph issue tracker yegge built alongside gas town. when one agent finishes a step, it relabels the bead and the next agent picks it up. label flips drive routing, not a hardcoded dag.
+agents talk by claiming work off a shared backlog. when one agent finishes a step, it relabels the task and the next agent picks it up. label flips drive routing, not a hardcoded dag.
 
 it feels less like using an llm and more like running a tiny async startup that happens to be made of agents.
 
@@ -27,7 +31,7 @@ it feels less like using an llm and more like running a tiny async startup that 
 
 determinism does not come from better prompts. i used to default to "tighten the system prompt." add more rules. give it more examples. the model will get there.
 
-gas city's answer is structurally different. you wrap the parts that have to be reliable in workflow templates (formulas, in their vocab, instantiated as molecules), and you only let the llm be creative inside each step. the graph of steps is fixed at cook time. the model cannot add steps, drop steps, or reorder them. it can only generate the content of each step.
+gas city's answer is structurally different. you wrap the parts that have to be reliable in workflow templates and only let the llm be creative inside each step. the graph of steps is fixed up front. the model cannot add steps, drop steps, or reorder them. it can only generate the content of each step.
 
 once you see this, "make the prompt smarter" stops being your reflex. you reach for "what is the smallest deterministic shape that contains this work" instead. the llm becomes the thing that fills cells in a known grid, not the thing that draws the grid.
 
@@ -35,13 +39,13 @@ this is the same insight people kept arriving at in the early ml days. control f
 
 ## reliability is a teammate
 
-the second thing that stuck is that gas city ships supervisor agents as first-class citizens. dogs, deacons, polecats. their job is to patrol. they look for stuck work, runaway loops, missed wakes, anomalies in mail rate. one of the workshop heuristics i liked: more than five mails per minute from one agent is a signal to investigate.
+the second thing that stuck is that gas city ships supervisor agents as first-class citizens. their job is to patrol. they look for stuck work, runaway loops, missed wakes, anomalies in mail rate. one of the workshop heuristics i liked: more than five mails per minute from one agent is a signal to investigate.
 
 i kept thinking we would build that later. add some logging, add some retries, ship a feature, then come back and bolt on monitoring once the system is interesting enough to break.
 
 the gas city pattern is to build it from day one. reliability is not a feature you add. it is a role on the team.
 
-i hit this in person during the labs. multiple times an agent would finish a task, route the next bead to a downstream agent, and then nothing would happen. the routing succeeded, the target session was idle, but no one woke it. the durable fix was to edit the downstream agent's claim query in its prompt template so it picks up routed work. the manual fix was a single nudge command. either way, you needed someone watching for the failure mode in the first place. that is what supervisors are for.
+i hit this in person during the labs. multiple times an agent would finish a task, route the next piece of work to a downstream agent, and then nothing would happen. the routing succeeded, the target session was idle, but no one woke it. the durable fix was to edit the downstream agent's claim query in its prompt template so it picks up routed work. the manual fix was a single nudge command. either way, you needed someone watching for the failure mode in the first place. that is what supervisors are for.
 
 ## config over chat
 
@@ -72,8 +76,8 @@ a few things i am bringing into my own work at [tambo](https://tambo.co):
 - supervisors are first-class. if an agent runs for any non-trivial length of time, it has a watcher.
 - read the code, not the plan. plans drift. code is the truth. in a multi-agent setup, the artifacts the agents produce are the truth, not the prompts.
 
-i also walked out with a much better mental model of where this is going. yegge has been writing about this for months and it is easy to read those posts as future-tense thinking. they are not. v1 shipped on day one of the workshop. the wasteland (a trust network linking thousands of gas towns) is already live. this stuff exists, it works, and the people building it ship faster than most of us can even keep up reading their blog posts.
+v1 shipped on day one of the workshop. the people building this stuff ship faster than most of us can keep up. it exists, it works, and the gap between "i should look at this" and "i am late" is going to close fast.
 
 big thanks to chris sells, julian knutsen, austin born, david miura, john kennedy, and joe heitzeberg for running it.
 
-if you are building anything with agents, gas city is worth at least a weekend of reading. start with the [coming from gas town](https://github.com/gastownhall/gascity/blob/main/docs/getting-started/coming-from-gastown.md) doc. then look at the gastown reference pack and read the prompts. that is where the design intent lives.
+if you are building anything with agents, [gas city](https://github.com/gastownhall/gascity) is worth at least a weekend of reading.
